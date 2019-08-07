@@ -22,5 +22,8 @@ C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\Registr.baml
 C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
 C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\Login.g.cs
 C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\Login.baml
-C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Migrations.InitialCreate.resources
+C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\CabinetPage.g.cs
+C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\CabinetPage.baml
 C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Migrations._1.resources
+C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\AddObject.g.cs
+C:\Users\a.sapotko\source\repos\WpfApp1\WpfApp1\obj\Debug\AddObject.baml

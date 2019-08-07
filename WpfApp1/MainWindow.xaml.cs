@@ -30,7 +30,9 @@ namespace WpfApp1
         public enum pages
         {
             login,
-            registr
+            registr,
+            cabinet,
+            addobject
         }
 
         public void OpenPages(pages pages)
@@ -42,6 +44,16 @@ namespace WpfApp1
                 if(pages == pages.registr)
             {
                 frame.Navigate(new Registr(this));
+            }
+            else
+                if (pages == pages.cabinet)
+            {
+                frame.Navigate(new CabinetPage(this));
+            }
+            else
+                if (pages == pages.addobject)
+            {
+                frame.Navigate(new AddObject(this));
             }
         }
         //private void Button_Click(object sender, RoutedEventArgs e)

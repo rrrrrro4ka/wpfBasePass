@@ -8,9 +8,9 @@
         Title="Login" Height="450" Width="800">
     <Grid>
         <Label Content="Введите мастер-пароль:" HorizontalAlignment="Left" Margin="250,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.238,-0.077"/>
-        <Button Content="Войти" HorizontalAlignment="Left" Margin="250,258,0,0" VerticalAlignment="Top" Width="80" Click="enter_Click" Height="34"/>
-        <Button Content="Регистрация" HorizontalAlignment="Left" Margin="352,258,0,0" VerticalAlignment="Top" Width="119" Click="reg_Click" Height="34"/>
-        <PasswordBox x:Name="password_box" HorizontalAlignment="Left" Margin="250,213,0,0" VerticalAlignment="Top" Height="26" Width="221" VerticalContentAlignment="Center"/>
+        <Button Content="Войти" HorizontalAlignment="Left" Margin="286,264,0,0" VerticalAlignment="Top" Width="80" Click="enter_Click" Height="34"/>
+        <Button Content="Регистрация" HorizontalAlignment="Left" Margin="388,264,0,0" VerticalAlignment="Top" Width="119" Click="reg_Click" Height="34"/>
+        <PasswordBox x:Name="password_box" HorizontalAlignment="Left" Margin="286,208,0,0" VerticalAlignment="Top" Height="26" Width="221" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Page>

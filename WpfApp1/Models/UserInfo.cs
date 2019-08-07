@@ -10,12 +10,14 @@ namespace WpfApp1.Models
 {
     public class UserInfo
     {
-        //  Один ко многим, foreignKey
+        //  One to one, foreignKey
         [Key]
         [ForeignKey("User")]
         public int id { get; set; }
         public string authSystem { get; set; }
+        public string login { get; set; }
         public string passwordSystem { get; set; }
+        public string web { get; set; }
 
         public User User { get; set; }
     }
