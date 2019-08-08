@@ -10,7 +10,6 @@ namespace WpfApp1.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "WpfApp1.Models.DBcontext";
         }
 
         protected override void Seed(WpfApp1.Models.DBcontext context)

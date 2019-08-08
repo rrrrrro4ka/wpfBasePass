@@ -33,13 +33,20 @@ namespace WpfApp1.Logic
             }
         }
 
+        public void CreateUser(UserInfo newuser)
+        {
+            _db.UserInformation.Add(newuser);
+            _db.SaveChanges();
+        }
         public void UpdateUserinfo(UserInfo entity)
         {
             UserInfo _userinfoDB = _db.UserInformation.FirstOrDefault(u => u.id == entity.id);
             if (_userinfoDB != null)
             {
                 _userinfoDB.authSystem = entity.authSystem;
+                _userinfoDB.login = entity.login;
                 _userinfoDB.passwordSystem = entity.passwordSystem;
+                _userinfoDB.web = entity.web;
             }
             _db.Entry(_userinfoDB).State = EntityState.Modified;
             _db.SaveChanges();

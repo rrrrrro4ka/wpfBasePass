@@ -14,8 +14,11 @@ namespace WpfApp1.Models
         [Key]
         [ForeignKey("User")]
         public int id { get; set; }
+        [Required]
         public string authSystem { get; set; }
+        [Required]
         public string login { get; set; }
+        [Required]
         public string passwordSystem { get; set; }
         public string web { get; set; }
 
