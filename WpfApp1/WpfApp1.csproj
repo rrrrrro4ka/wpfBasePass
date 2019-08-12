@@ -74,9 +74,9 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908080930285_1.cs" />
-    <Compile Include="Migrations\201908080930285_1.Designer.cs">
-      <DependentUpon>201908080930285_1.cs</DependentUpon>
+    <Compile Include="Migrations\201908090323230_1.cs" />
+    <Compile Include="Migrations\201908090323230_1.Designer.cs">
+      <DependentUpon>201908090323230_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DBcontext.cs" />
@@ -85,6 +85,8 @@
     <Compile Include="Registr.xaml.cs">
       <DependentUpon>Registr.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BaseUserViewModel.cs" />
+    <Compile Include="ViewModels\UserViewInformation.cs" />
     <Page Include="AddObject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,8 +130,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201908080930285_1.resx">
-      <DependentUpon>201908080930285_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908090323230_1.resx">
+      <DependentUpon>201908090323230_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

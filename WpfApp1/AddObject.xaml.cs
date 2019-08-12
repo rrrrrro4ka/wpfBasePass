@@ -33,13 +33,28 @@ namespace WpfApp1
             mainwindow = _mainWindow;
             
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Кнопка возврата в общий грид личнго кабинета пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_ToCabinet(object sender, RoutedEventArgs e)
         {
-            mainwindow.OpenPages(MainWindow.pages.cabinet);
+            try
+            {
+                mainwindow.OpenPages(MainWindow.pages.cabinet);
+            } catch(Exception exc)
+            {
+                MessageBox.Show($"Ошибка возвращения в личный кабинет пользователя со страницы регистрации: {0}", exc.Message);
+            }
+            
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Кнопка добавления системы в БД. Сбор всех полей в один объект.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Save(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -47,11 +62,13 @@ namespace WpfApp1
                 {
                     UserInfo userinformation = new UserInfo();
                     UserServiceCabinet usercabinet = new UserServiceCabinet(db);
-                    userinformation.id = CabinetPage.uID;
+                    UserService userserv = new UserService(db);
                     userinformation.authSystem = Systema.Text;
                     userinformation.login = Login.Text;
                     userinformation.passwordSystem = Pass.Password;
                     userinformation.web = website.Text;
+                    userinformation.User = userserv.GetUser(CabinetPage.uID);
+                    
                     usercabinet.CreateUser(userinformation);
                     MessageBox.Show("Система добавлена.");
                 }
@@ -60,9 +77,9 @@ namespace WpfApp1
                     MessageBox.Show("Не все обязательные поля заполнены.");
                 }
             }
-            catch (Exception except)
+            catch (Exception exc)
             {
-                MessageBox.Show($"При сохранении системы произошла ошибка {except.Message}");
+                MessageBox.Show($"При сохранении системы произошла ошибка {exc.Message}");
             }
         }
     }

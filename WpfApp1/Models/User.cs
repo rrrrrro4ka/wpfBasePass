@@ -13,6 +13,10 @@ namespace WpfApp1.Models
         public int id { get; set; }
         public string pass { get; set; }
 
-        public UserInfo UserInfo { get; set; }
+        public ICollection<UserInfo> UserInfoes { get; set; }
+        public User()
+        {
+            UserInfoes = new List<UserInfo>();
+        }
     }
 }

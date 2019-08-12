@@ -22,7 +22,7 @@ namespace WpfApp1.Logic
             _db.Users.Add(user);
             _db.SaveChanges();
         }
-        public User GetUserPass(int id)
+        public User GetUser(int id)
         {
             return _db.Users.FirstOrDefault(u => u.id == id);
         }
@@ -31,6 +31,5 @@ namespace WpfApp1.Logic
         {
             return _db.Users.ToList();
         }
-
     }
 }

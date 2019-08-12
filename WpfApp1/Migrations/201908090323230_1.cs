@@ -11,15 +11,16 @@ namespace WpfApp1.Migrations
                 "dbo.UserInfoes",
                 c => new
                     {
-                        id = c.Int(nullable: false),
+                        id = c.Int(nullable: false, identity: true),
                         authSystem = c.String(nullable: false),
                         login = c.String(nullable: false),
                         passwordSystem = c.String(nullable: false),
                         web = c.String(),
+                        User_id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Users", t => t.id)
-                .Index(t => t.id);
+                .ForeignKey("dbo.Users", t => t.User_id, cascadeDelete: true)
+                .Index(t => t.User_id);
             
             CreateTable(
                 "dbo.Users",
@@ -34,8 +35,8 @@ namespace WpfApp1.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserInfoes", "id", "dbo.Users");
-            DropIndex("dbo.UserInfoes", new[] { "id" });
+            DropForeignKey("dbo.UserInfoes", "User_id", "dbo.Users");
+            DropIndex("dbo.UserInfoes", new[] { "User_id" });
             DropTable("dbo.Users");
             DropTable("dbo.UserInfoes");
         }

@@ -23,6 +23,9 @@ namespace WpfApp1
     {
         public MainWindow mainWindow;
         public DBcontext _dbcon = new DBcontext();
+        /// <summary>
+        /// Создан объект чтобы передавать его между страницами. Понять как правильно реализовывать???
+        /// </summary>
         public static int uID { get; set; }
         public Login(MainWindow _mainWindow)
         {
@@ -38,27 +41,44 @@ namespace WpfApp1
         /// <param name="e"></param>
         private void enter_Click(object sender, RoutedEventArgs e)
         {
-            if(password_box.Password.Length > 0)
+            try
             {
-                List<User> users = _dbcon.Users.ToList();
-                foreach(User us in users)
+
+
+                if (password_box.Password.Length > 0)
                 {
-                    if (us.pass == password_box.Password && us.pass != null)
+                    List<User> users = _dbcon.Users.ToList();
+                    if (users != null)
                     {
-                        uID = us.id;
-                        MessageBox.Show("Добро пожаловать!");
-                        mainWindow.OpenPages(MainWindow.pages.cabinet);
+
+
+                        foreach (User us in users)
+                        {
+                            if (us.pass == password_box.Password && us.pass != null)
+                            {
+                                uID = us.id;
+                                MessageBox.Show("Добро пожаловать!");
+                                mainWindow.OpenPages(MainWindow.pages.cabinet);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Такого пользователя нет в системе.");
+                            }
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Такого пользователя нет в системе.");
+                        MessageBox.Show("Пользователей нет в системе. Зарегистрируйтесь.");
                     }
+
                 }
-             
-            }
-            else
+                else
+                {
+                    MessageBox.Show("Введите пароль.");
+                }
+            } catch(Exception exc)
             {
-                MessageBox.Show("Введите пароль.");
+                MessageBox.Show($"Ошибка при попытке войти в систему: {0}", exc.Message);
             }
 
         }
@@ -69,7 +89,13 @@ namespace WpfApp1
         /// <param name="e"></param>
         private void reg_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.OpenPages(MainWindow.pages.registr);
+            try
+            {
+                mainWindow.OpenPages(MainWindow.pages.registr);
+            } catch(Exception exc)
+            {
+                MessageBox.Show($"Ошибка при попытке перейти на страницу регистрации: {0}", exc.Message);
+            }
         }
     }
 }

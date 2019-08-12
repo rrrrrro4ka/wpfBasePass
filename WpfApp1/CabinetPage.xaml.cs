@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Logic;
 using WpfApp1.Models;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1
 {
@@ -25,22 +26,47 @@ namespace WpfApp1
         public MainWindow mainwindow;
         DBcontext db = new DBcontext();
         public static int uID { get; set; }
-
+        /// <summary>
+        /// Отображение систем пользователя в его личном кабинете. Что-то тут не так, понять как правильно реализовать???
+        /// </summary>
+        /// <param name="_mainwindow"></param>
         public CabinetPage(MainWindow _mainwindow)
         {
             InitializeComponent();
             mainwindow = _mainwindow;
-            UserServiceCabinet us = new UserServiceCabinet(db);
-            UserInfo userInfo = us.GetUserInfo(Login.uID);
+            try
+            {
+                UserServiceCabinet us = new UserServiceCabinet(db);
+                List<UserInfo> userInfo = us.GetUserInfo(Login.uID);
+                if (userInfo != null)
+                {
+                    UserViewInformation userInfoview = new UserViewInformation(userInfo);
+                    List<UserViewInformation> listView = userInfoview.Listout;
+                    //this.DataContext = listView;
+                    DataGridCabinet.ItemsSource = listView;
+                    //ItemsSource = "{Binding Source=userInfo}"
+                }
+            } catch(Exception exc)
+            {
+                MessageBox.Show($"Не удалось получить информацию по пользователю. Произошла какая-то ошибка: {0}", exc.Message);
+            }
+           
         }
 
         
         
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddNewSystemToBase(object sender, RoutedEventArgs e)
         {
-            uID = Login.uID;
-            mainwindow.OpenPages(MainWindow.pages.addobject);
+            try
+            {
+                uID = Login.uID;
+                mainwindow.OpenPages(MainWindow.pages.addobject);
+            } catch(Exception exc)
+            {
+                MessageBox.Show($"Ошибка при попытке перейти в раздел добавления новой системы пользователя: {0}", exc.Message);
+            }
+            
         }
     }
 }

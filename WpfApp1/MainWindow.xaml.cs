@@ -34,7 +34,10 @@ namespace WpfApp1
             cabinet,
             addobject
         }
-
+        /// <summary>
+        /// Метод перехода между разными страницами. 
+        /// </summary>
+        /// <param name="pages"></param>
         public void OpenPages(pages pages)
         {
             if(pages == pages.login)

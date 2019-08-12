@@ -9,15 +9,20 @@
       Title="CabinetPage">
 
     <Grid>
-        <Button Content="Добавить ресурс" HorizontalAlignment="Left" Margin="733,657,0,0" VerticalAlignment="Top" Width="197" Height="56" Click="Button_Click"/>
-        <DataGrid x:Name="DataGridCabinet" HorizontalAlignment="Left" Height="667" Margin="30,46,0,0" VerticalAlignment="Top" Width="600">
+        <Button Content="Добавить ресурс" HorizontalAlignment="Left" Margin="733,657,0,0" VerticalAlignment="Top" Width="197" Height="56" Click="AddNewSystemToBase"/>
+        <DataGrid x:Name="DataGridCabinet" HorizontalAlignment="Left"  Height="667" Margin="30,46,0,0" VerticalAlignment="Top" Width="608" AutoGenerateColumns="False" CanUserResizeColumns="True" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Система" Width="175" 
-                             Binding="{Binding Path=userInfo.authSystem}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Логин" 
-                             Binding="{Binding Path=GetUsers}"></DataGridTextColumn>
+                             Binding="{Binding Path=usersystem, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Логин" Width="125"
+                             Binding="{Binding Path=loginsystem, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пароль" Width="125"
+                             Binding="{Binding Path=passwordsystem, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сайт" Width="175"
+                             Binding="{Binding Path=website, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+      
 
 
 

@@ -10,9 +10,7 @@ namespace WpfApp1.Models
 {
     public class UserInfo
     {
-        //  One to one, foreignKey
-        [Key]
-        [ForeignKey("User")]
+        //  One to many
         public int id { get; set; }
         [Required]
         public string authSystem { get; set; }
@@ -25,3 +23,4 @@ namespace WpfApp1.Models
         public User User { get; set; }
     }
 }
+

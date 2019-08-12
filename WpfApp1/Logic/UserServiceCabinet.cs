@@ -17,12 +17,18 @@ namespace WpfApp1.Logic
         {
             _db = db;
         }          
-
+        /// <summary>
+        /// Возвращает список юзеров и их информацию
+        /// </summary>
+        /// <returns></returns>
         public List<UserInfo> GetUsers()
         {
             return _db.UserInformation.ToList();
         }
-
+        /// <summary>
+        /// Удаляет информацию по юзеру.
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteUser(int id)
         {
             UserInfo user = _db.UserInformation.FirstOrDefault(u => u.id == id);
@@ -32,12 +38,20 @@ namespace WpfApp1.Logic
                 _db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Создает систему пользователя в личном кабинете
+        /// </summary>
+        /// <param name="newuser"></param>
 
         public void CreateUser(UserInfo newuser)
         {
             _db.UserInformation.Add(newuser);
             _db.SaveChanges();
         }
+        /// <summary>
+        /// Обновляет данные по системе пользователя
+        /// </summary>
+        /// <param name="entity"></param>
         public void UpdateUserinfo(UserInfo entity)
         {
             UserInfo _userinfoDB = _db.UserInformation.FirstOrDefault(u => u.id == entity.id);
@@ -51,10 +65,14 @@ namespace WpfApp1.Logic
             _db.Entry(_userinfoDB).State = EntityState.Modified;
             _db.SaveChanges();
         }
-
-        public UserInfo GetUserInfo(int id)
+        /// <summary>
+        /// Возвращает данные о системах конкретного пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<UserInfo> GetUserInfo(int id)
         {
-            return _db.UserInformation.FirstOrDefault(u => u.id == id);
+            return _db.UserInformation.Where(u => u.User.id == id).ToList();
         }
     
             

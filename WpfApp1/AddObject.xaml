@@ -17,8 +17,8 @@
         <Label HorizontalAlignment="Left" Margin="64,102,0,0" VerticalAlignment="Top" Height="31" Width="211" Content="Логин:"/>
         <Label HorizontalAlignment="Left" Margin="64,177,0,0" VerticalAlignment="Top" Height="31" Width="211" Content="Пароль:"/>
         <Label HorizontalAlignment="Left" Margin="64,251,0,0" VerticalAlignment="Top" Height="31" Width="211" Content="Ссылка:"/>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="397,57,0,0" VerticalAlignment="Top" Width="79" Height="40" Click="Button_Click_1"/>
-        <Button Content="Отмена" HorizontalAlignment="Left" Margin="397,282,0,0" VerticalAlignment="Top" Width="79" Height="40" Click="Button_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="397,57,0,0" VerticalAlignment="Top" Width="79" Height="40" Click="Button_Save"/>
+        <Button Content="Отмена" HorizontalAlignment="Left" Margin="397,282,0,0" VerticalAlignment="Top" Width="79" Height="40" Click="Button_ToCabinet"/>
 
     </Grid>
 </Page>

@@ -13,7 +13,7 @@ namespace WpfApp1.interfaceS
         
         void DeleteUser(TKey id);
         void UpdateUserinfo(TType userinfo);
-        TType GetUserInfo(TKey id);
+        List<TType> GetUserInfo(TKey id);
     }
 
 }
