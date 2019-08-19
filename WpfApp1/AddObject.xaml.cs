@@ -71,6 +71,7 @@ namespace WpfApp1
                     
                     usercabinet.CreateUser(userinformation);
                     MessageBox.Show("Система добавлена.");
+                    mainwindow.OpenPages(MainWindow.pages.cabinet);
                 }
                 else
                 {

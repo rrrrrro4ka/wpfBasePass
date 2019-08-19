@@ -44,7 +44,6 @@ namespace WpfApp1
                     //List<UserViewInformation> listView = userInfoview.Listout;
                     //this.DataContext = listView;
                     DataGridCabinet.ItemsSource = userInfo;
-                    //ItemsSource = "{Binding Source=userInfo}"
                 }
             } catch(Exception exc)
             {
@@ -79,7 +78,18 @@ namespace WpfApp1
 
         private void Button_SaveChanges(object sender, RoutedEventArgs e)
         {
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+                mainwindow.OpenPages(MainWindow.pages.cabinet);
+            } catch(Exception exc)
+            {
+                MessageBox.Show($"Не удалось сохранить изменения, произошла ошибка: {0}", exc.Message);
+            }            
+            DataGridCabinet.IsReadOnly = true;
+            SaveChanges.Visibility = Visibility.Hidden;
+            dontSaveChanges.Visibility = Visibility.Hidden;
+            ChangeInformation.Visibility = Visibility.Visible;
         }
 
         private void Button_returnBack(object sender, RoutedEventArgs e)
