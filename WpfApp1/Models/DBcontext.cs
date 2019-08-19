@@ -18,7 +18,6 @@ namespace WpfApp1.Models
         public DbSet<User> Users { get; set; }
         public DbSet<UserInfo> UserInformation { get; set; }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()

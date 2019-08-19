@@ -102,14 +102,14 @@ namespace WpfApp1
             if(password.Text == password_copy.Text)
             {               
                 User user = new User();
-                user.pass = password.Text;
+                user.pass = HashCryptoService.EncryptHashPassword(password.Text);
                 try
                 {
                     UserService userServ = new UserService(_db);
                     List<User> users = userServ.GetUsers();
                     foreach(User us in users)
                     {
-                        if (us.pass == user.pass)
+                        if (HashCryptoService.VerifyHashPassword(us.pass, password.Text))
                         {
                             MessageBox.Show("Такой пользователь уже есть в системе!");
                             return;

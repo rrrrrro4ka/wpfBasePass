@@ -69,6 +69,7 @@
       <DependentUpon>CabinetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="interfaceS\IUserService.cs" />
+    <Compile Include="Logic\HashCryptoService.cs" />
     <Compile Include="Logic\UserService.cs" />
     <Compile Include="Logic\UserServiceCabinet.cs" />
     <Compile Include="Login.xaml.cs">

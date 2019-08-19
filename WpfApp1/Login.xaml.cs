@@ -54,11 +54,12 @@ namespace WpfApp1
 
                         foreach (User us in users)
                         {
-                            if (us.pass == password_box.Password && us.pass != null)
+                            if (HashCryptoService.VerifyHashPassword(us.pass, password_box.Password) && us.pass != null)
                             {
                                 uID = us.id;
                                 MessageBox.Show("Добро пожаловать!");
                                 mainWindow.OpenPages(MainWindow.pages.cabinet);
+                                return;
                             }
                             else
                             {

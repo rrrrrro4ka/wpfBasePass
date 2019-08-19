@@ -11,6 +11,7 @@ namespace WpfApp1.ViewModels
 
     class UserViewInformation : BaseUserViewModel
     {
+        private int _id;
         private string _usersystem;
         private string _loginsystem;
         private string _passsystem;
@@ -37,6 +38,7 @@ namespace WpfApp1.ViewModels
                 {
                     listout.Add(new UserViewInformation()
                     {
+                        _id = us.id,
                         _usersystem = us.authSystem,
                         _loginsystem = us.login,
                         _passsystem = us.passwordSystem,
@@ -46,6 +48,7 @@ namespace WpfApp1.ViewModels
                 }
                 return listout;
             }
+            set { }
         }
         /// <summary>
         /// Свойство для получения/записи системы пользователя

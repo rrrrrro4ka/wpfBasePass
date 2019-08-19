@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Logic;
 using WpfApp1.Models;
-using WpfApp1.ViewModels;
+//using WpfApp1.ViewModels;
 
 namespace WpfApp1
 {
@@ -40,10 +40,10 @@ namespace WpfApp1
                 List<UserInfo> userInfo = us.GetUserInfo(Login.uID);
                 if (userInfo != null)
                 {
-                    UserViewInformation userInfoview = new UserViewInformation(userInfo);
-                    List<UserViewInformation> listView = userInfoview.Listout;
+                    //UserViewInformation userInfoview = new UserViewInformation(userInfo);
+                    //List<UserViewInformation> listView = userInfoview.Listout;
                     //this.DataContext = listView;
-                    DataGridCabinet.ItemsSource = listView;
+                    DataGridCabinet.ItemsSource = userInfo;
                     //ItemsSource = "{Binding Source=userInfo}"
                 }
             } catch(Exception exc)
@@ -67,6 +67,27 @@ namespace WpfApp1
                 MessageBox.Show($"Ошибка при попытке перейти в раздел добавления новой системы пользователя: {0}", exc.Message);
             }
             
+        }
+
+        private void Button_Change_Information(object sender, RoutedEventArgs e)
+        {
+            DataGridCabinet.IsReadOnly = false;
+            ChangeInformation.Visibility = Visibility.Hidden;
+            SaveChanges.Visibility = Visibility.Visible;
+            dontSaveChanges.Visibility = Visibility.Visible;
+        }
+
+        private void Button_SaveChanges(object sender, RoutedEventArgs e)
+        {
+            db.SaveChanges();
+        }
+
+        private void Button_returnBack(object sender, RoutedEventArgs e)
+        {
+            DataGridCabinet.IsReadOnly = true;
+            SaveChanges.Visibility = Visibility.Hidden;
+            dontSaveChanges.Visibility = Visibility.Hidden;
+            ChangeInformation.Visibility = Visibility.Visible;
         }
     }
 }

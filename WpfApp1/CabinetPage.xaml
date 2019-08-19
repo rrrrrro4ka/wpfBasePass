@@ -9,20 +9,25 @@
       Title="CabinetPage">
 
     <Grid>
-        <Button Content="Добавить ресурс" HorizontalAlignment="Left" Margin="733,657,0,0" VerticalAlignment="Top" Width="197" Height="56" Click="AddNewSystemToBase"/>
+        <Button x:Name="AddInformation" Content="Добавить ресурс" HorizontalAlignment="Left" Margin="733,657,0,0" VerticalAlignment="Top" Width="197" Height="56" Click="AddNewSystemToBase"/>
+        <Button x:Name="ChangeInformation" Content="Редактировать данные" HorizontalAlignment="Left" Margin="733,573,0,0" VerticalAlignment="Top" Width="197" Height="56" Click="Button_Change_Information"/>
+        <Button x:Name="SaveChanges" Content="Сохранить" HorizontalAlignment="Left" Margin="693,573,0,0" VerticalAlignment="Top" Width="120" Height="56" Click="Button_SaveChanges" Visibility="Hidden"/>
+        <Button x:Name="dontSaveChanges" Content="Отмена" HorizontalAlignment="Left" Margin="873,573,0,0" VerticalAlignment="Top" Width="120" Height="56" Click="Button_returnBack" Visibility="Hidden"/>
         <DataGrid x:Name="DataGridCabinet" HorizontalAlignment="Left"  Height="667" Margin="30,46,0,0" VerticalAlignment="Top" Width="608" AutoGenerateColumns="False" CanUserResizeColumns="True" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Система" Width="175" 
-                             Binding="{Binding Path=usersystem, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Система" Width="175"
+                             Binding="{Binding Path=authSystem, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Логин" Width="125"
-                             Binding="{Binding Path=loginsystem, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                             Binding="{Binding Path=login, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Пароль" Width="125"
-                             Binding="{Binding Path=passwordsystem, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                             Binding="{Binding Path=passwordSystem, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Сайт" Width="175"
-                             Binding="{Binding Path=website, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                             Binding="{Binding Path=web, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-      
+        
+
+
 
 
 
