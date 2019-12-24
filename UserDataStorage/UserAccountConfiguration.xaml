@@ -1,0 +1,61 @@
+﻿<Window x:Class="UserDataStorage.UserAccountConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserDataStorage"
+        mc:Ignorable="d"
+        Title="UserAccountConfiguration" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.2*" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name ="ViewAccount" Grid.Column="0" ItemsSource="{Binding UserAccountInformations}"
+                 SelectedItem="{Binding SelectedSystem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=AuthSystem}" />
+                        <TextBlock Text="{Binding Path=Login}" />
+                        <TextBlock Text="{Binding Path=PasswordSystem}" />
+                        <TextBlock Text="{Binding Path=Website}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Command="{Binding AddNewSystemCommand}">Добавить систему</Button>
+            <Button Command="{Binding RemoveUserSystemCommand}">Удалить систему</Button>
+            <Button Command="{Binding SaveUserSystemCommand}">Сохранить</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" DataContext="{Binding SelectedSystem}">
+            <TextBlock Text="Редактирование систем"  />
+            <TextBlock>
+                Система<Run Text="*" Foreground="Red"/>:
+            </TextBlock>                      
+            <TextBox Text="{Binding AuthSystem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True,
+             NotifyOnValidationError=True}"/>
+            <TextBlock>
+                Логин системы<Run Text="*" Foreground="Red"/>:
+            </TextBlock>
+            <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True,
+             NotifyOnValidationError=True}" />
+            <TextBlock>
+                Пароль от системы<Run Text="*" Foreground="Red"/>:
+            </TextBlock>
+            <TextBox Text="{Binding PasswordSystem, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True,
+             NotifyOnValidationError=True}" />
+            <TextBlock Text="Сайт системы:" />
+            <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+    </Grid>
+
+</Window>
