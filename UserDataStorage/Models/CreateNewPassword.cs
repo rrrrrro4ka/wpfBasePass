@@ -8,17 +8,17 @@ namespace UserDataStorage.Models
 {
     public class CreateNewPassword
     {
-        private string new_password;
-        private string secret_word;
+        private string newPassword;
+        private string secretWord;
         public string AddPassword
         {
-            set { new_password = value; }
-            get { return new_password; }
+            set { newPassword = value; }
+            get { return newPassword; }
         }
         public string AddSecretWord
         {
-            set { secret_word = value; }
-            get { return secret_word; }
+            set { secretWord = value; }
+            get { return secretWord; }
         }
     }
 }

@@ -22,6 +22,7 @@ namespace UserDataStorage.ViewModels
                 OnPropertyChanged(nameof(UserPassword));
             }
         }
+
         /// <summary>
         /// Команда на кнопку входа в личный кабинет.
         /// </summary>
@@ -37,6 +38,7 @@ namespace UserDataStorage.ViewModels
             XmlService xmlPass = new XmlService();
             return xmlPass.CompareUserPassword(userpassword);
         }
+
         /// <summary>
         /// Метод выполняемый при нажатии на кнопку авторизации. Проверяются пароли на совпадение, 
         /// если всё ок заходим в ЛК. 

@@ -8,17 +8,17 @@ namespace UserDataStorage.Models
 {
     public class ChangeUserPassword
     {
-        private string new_password;
-        private string new_secret_word;
+        private string nePpassword;
+        private string newSecretWord;
         public string Password
         {
-            set { new_password = value; }
-            get { return new_password; }
+            set { nePpassword = value; }
+            get { return nePpassword; }
         }
         public string NewSecretWord
         {
-            set { new_secret_word = value; }
-            get { return new_secret_word; }
+            set { newSecretWord = value; }
+            get { return newSecretWord; }
         }
     }
 }

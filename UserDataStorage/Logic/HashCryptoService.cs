@@ -44,6 +44,7 @@ namespace UserDataStorage.Logic
 
             return true;
         }
+
         /// <summary>
         /// Метод хеширует пароль используя Rfc2898DeriveBytes
         /// </summary>
@@ -69,6 +70,7 @@ namespace UserDataStorage.Logic
             return Convert.ToBase64String(arrayToReturn);
 
         }
+
         /// <summary>
         /// Метод сравнения пароля пользователя и пароля-хеша в БД
         /// </summary>

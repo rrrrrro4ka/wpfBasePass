@@ -12,41 +12,43 @@ namespace UserDataStorage.ViewModels
 {
     class UserInformationViewModel : BaseUserViewModel
     {
-        private SystemInfo selected_system;
-        private DelegateCommand save_user_system;
-        private DelegateCommand add_new_system_сommand;
-        private DelegateCommand remove_system_command;
-        private ObservableCollection<SystemInfo> system_info_collection;
+        private SystemInfo selectedSystem;
+        private DelegateCommand saveUserSystem;
+        private DelegateCommand addNewSystemCommand;
+        private DelegateCommand removeSystemCommand;
+        private ObservableCollection<SystemInfo> systemInfoCollection;
         XmlService xml = new XmlService();
         public UserInformationViewModel()
         {
-            system_info_collection = new ObservableCollection<SystemInfo>();
-            system_info_collection = xml.userstoragelist;
+            systemInfoCollection = new ObservableCollection<SystemInfo>();
+            systemInfoCollection = xml.UserStorageList;
         }
         public SystemInfo SelectedSystem
         {
-            get { return selected_system; }
+            get { return selectedSystem; }
             set
             {
-                if (value != selected_system)
+                if (value != selectedSystem)
                 {
-                    selected_system = value;
+                    selectedSystem = value;
                     OnPropertyChanged(nameof(SelectedSystem));
                     RemoveUserSystemCommand.RaiseCanExecuteChanged();
-                    save_user_system.RaiseCanExecuteChanged();
+                    saveUserSystem.RaiseCanExecuteChanged();
                 }
             }
         }
         public ObservableCollection<SystemInfo> UserAccountInformations
         {
-            get { return system_info_collection; }
+            get { return systemInfoCollection; }
             set
             {
-                system_info_collection = value;
+                systemInfoCollection = value;
                 OnPropertyChanged(nameof(UserAccountInformations));
             }
         }
+
         #region Command
+
         /// <summary>
         /// Команда добавления новой системы в лист пользовательских систем.
         /// </summary>
@@ -54,16 +56,18 @@ namespace UserDataStorage.ViewModels
         {
             get
             {
-                return add_new_system_сommand ?? (add_new_system_сommand = new DelegateCommand(param => AddNewSystem()));
+                return addNewSystemCommand ?? (addNewSystemCommand = new DelegateCommand(param => AddNewSystem()));
             }
         }
+
         /// <summary>
         /// Метод который используется в команде для добавления новой системы. Он отвечает за логику.
         /// </summary>
         private void AddNewSystem()
         {
-            system_info_collection.Add(new SystemInfo() { AuthSystem = "Новая", Login = "Новый", PasswordSystem = "Новый", Website = "Сайт" });
+            systemInfoCollection.Add(new SystemInfo() { AuthSystem = "Новая", Login = "Новый", PasswordSystem = "Новый", Website = "Сайт" });
         }
+
         /// <summary>
         /// Команда для сохранения данных о системе пользователя.
         /// </summary>
@@ -73,11 +77,12 @@ namespace UserDataStorage.ViewModels
             {
                 if (SelectedSystem == null)
                 {
-                    save_user_system = new DelegateCommand(SaveUserSystems, CanSaveUserSystem);
+                    saveUserSystem = new DelegateCommand(SaveUserSystems, CanSaveUserSystem);
                 }
-                return save_user_system;
+                return saveUserSystem;
             }
         }
+
         /// <summary>
         /// Метод сохранения данных о системе. Пишет данные в xml.
         /// </summary>
@@ -86,6 +91,7 @@ namespace UserDataStorage.ViewModels
         {
             xml.SaveUserSystemToXml(SelectedSystem, UserAccountInformations);
         }
+
         /// <summary>
         /// Метод, который проверяет можем ли мы сохранять систему и если можем, то даёт добро для команды.
         /// </summary>
@@ -107,6 +113,7 @@ namespace UserDataStorage.ViewModels
                 return true;
             }
         }
+
         /// <summary>
         /// Команда по удалению системы из общего списка.
         /// </summary>
@@ -114,9 +121,10 @@ namespace UserDataStorage.ViewModels
         {
             get
             {
-                return remove_system_command ?? (remove_system_command = new DelegateCommand(RemoveSystem, CanRemoveSystem));
+                return removeSystemCommand ?? (removeSystemCommand = new DelegateCommand(RemoveSystem, CanRemoveSystem));
             }
         }
+
         /// <summary>
         /// Метод удаления системы из общего списка, а так из xml.
         /// </summary>
@@ -126,6 +134,7 @@ namespace UserDataStorage.ViewModels
             xml.RemoveSystemFromXml(SelectedSystem);
             UserAccountInformations.Remove(SelectedSystem);
         }
+
         /// <summary>
         /// Метод, который проверяет можно ли удалить нам систему из списка. Ищёт её и удаляет из списка и xml.
         /// </summary>
@@ -147,7 +156,9 @@ namespace UserDataStorage.ViewModels
                 return true;
             }
         }
+
         #endregion
+
         /// <summary>
         /// Метод поиска нужной системы в списке систем пользователя.
         /// </summary>
@@ -161,7 +172,7 @@ namespace UserDataStorage.ViewModels
             }
             else
             {
-                return system_info_collection.FirstOrDefault(UserInformation => UserInformation.AuthSystem == usersystem.AuthSystem
+                return systemInfoCollection.FirstOrDefault(UserInformation => UserInformation.AuthSystem == usersystem.AuthSystem
                     && UserInformation.Login == usersystem.Login
                     && UserInformation.PasswordSystem == usersystem.PasswordSystem
                     && UserInformation.Website == usersystem.Website);

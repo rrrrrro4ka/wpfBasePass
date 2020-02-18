@@ -12,47 +12,47 @@ namespace UserDataStorage.ViewModels
 {
     class NewAccountUserViewModel : BaseUserViewModel
     {
-        private CreateNewPassword new_password = new CreateNewPassword();
-        private string first_password;
-        private string second_password;
-        private string secret_word;
-        private DelegateCommand addPassword_Command;
+        private CreateNewPassword newPassword = new CreateNewPassword();
+        private string firstPassword;
+        private string secondPassword;
+        private string secretWord;
+        private DelegateCommand addPasswordCommand;
 
         public string FirstPassword
         {
-            get { return first_password; }
+            get { return firstPassword; }
             set
             {
-                first_password = value;
+                firstPassword = value;
                 OnPropertyChanged(nameof(FirstPassword));
-                addPassword_Command.RaiseCanExecuteChanged();
+                addPasswordCommand.RaiseCanExecuteChanged();
             }
         }
         public string SecondPassword
         {
-            get { return second_password; }
+            get { return secondPassword; }
             set
             {
-                second_password = value;
+                secondPassword = value;
                 OnPropertyChanged(nameof(SecondPassword));
-                addPassword_Command.RaiseCanExecuteChanged();
+                addPasswordCommand.RaiseCanExecuteChanged();
             }
         }
         public string SecretWord
         {
-            get { return secret_word; }
+            get { return secretWord; }
             set
             {
-                secret_word = value;
+                secretWord = value;
                 OnPropertyChanged(nameof(SecretWord));
-                addPassword_Command.RaiseCanExecuteChanged();
+                addPasswordCommand.RaiseCanExecuteChanged();
             }
         }
         public DelegateCommand AddPasswordCommand
         {
             get
             {
-                return addPassword_Command = new DelegateCommand(SaveNewPassword, CanSaveNewPassword);
+                return addPasswordCommand = new DelegateCommand(SaveNewPassword, CanSaveNewPassword);
             }
         }
         /// <summary>
@@ -64,10 +64,10 @@ namespace UserDataStorage.ViewModels
         {
             if (FirstPassword == SecondPassword)
             {
-                new_password.AddPassword = FirstPassword;
-                new_password.AddSecretWord = SecretWord;
+                newPassword.AddPassword = FirstPassword;
+                newPassword.AddSecretWord = SecretWord;
                 XmlService xmlPass = new XmlService();
-                xmlPass.SaveUserPasswordToXml(new_password);
+                xmlPass.SaveUserPasswordToXml(newPassword);
                 xmlPass.DeleteUserSystemsXml();
                 MainWindow Main = new MainWindow();
                 foreach (Window window in App.Current.Windows)

@@ -9,8 +9,8 @@ namespace UserDataStorage.Utils
 {
     public class DelegateCommand : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private readonly Predicate<object> canExecute;
+        private readonly Action<object> execute;
         public event EventHandler CanExecuteChanged;
         public DelegateCommand(Action<object> execute)
                        : this(execute, null)
@@ -20,23 +20,23 @@ namespace UserDataStorage.Utils
         public DelegateCommand(Action<object> execute,
                        Predicate<object> canExecute)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
+            if (canExecute == null)
             {
                 return true;
             }
 
-            return _canExecute(parameter);
+            return canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            execute(parameter);
         }
 
         public void RaiseCanExecuteChanged()

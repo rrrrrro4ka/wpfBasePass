@@ -59,6 +59,7 @@ namespace UserDataStorage.ViewModels
                 change_password_command.RaiseCanExecuteChanged();
             }
         }
+
         /// <summary>
         /// Команда для кнопки сохранения измененного пароля.
         /// </summary>
@@ -69,6 +70,7 @@ namespace UserDataStorage.ViewModels
                 return change_password_command = new DelegateCommand(ChangePassword, CanChangePassword);
             }
         }
+
         /// <summary>
         /// Метод проверяет одинаковые ли пароли, совпадают ли секретные слова из файла и "Старое секретное слово"
         /// и сохраняет измененный пароль в xml.
@@ -107,6 +109,7 @@ namespace UserDataStorage.ViewModels
                 MessageBox.Show("Секретное слово неверно.");
             }
         }
+
         /// <summary>
         /// Метод проверяет заполнены ли все необходимые поля на форме. Если всё ок, даёт возможнось активировать кнопку сохранения 
         /// через delegatecommand.

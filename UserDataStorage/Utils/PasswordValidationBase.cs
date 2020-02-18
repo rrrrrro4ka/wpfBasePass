@@ -23,6 +23,7 @@ namespace UserDataStorage.Utils
                 RemoveError("PasswordSystem", SYSTEM_ERROR);
             }
         }
+
         /// <summary>
         /// Метод добавления ошибки в лист со всеми соответствующими проверками
         /// </summary>
@@ -41,6 +42,7 @@ namespace UserDataStorage.Utils
                 RaiseErrorsChanged(propertyName);
             }
         }
+
         /// <summary>
         /// Метод удаления ошибки из листа
         /// </summary>
@@ -64,6 +66,7 @@ namespace UserDataStorage.Utils
 
         #region INotifyDataErrorInfo Members
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
         /// <summary>
         /// Возвращаем коллекцию ошибок определенного типа
         /// </summary>
@@ -75,6 +78,7 @@ namespace UserDataStorage.Utils
                 !errors.ContainsKey(propertyName)) return null;
             return errors[propertyName];
         }
+
         /// <summary>
         /// Наличие ошибок в листе
         /// </summary>

@@ -13,52 +13,52 @@ namespace UserDataStorage.Models
 {
     public class SystemInfo : ValidationSystemBase
     {
-        private string _authsystem;
-        private string _login;
-        private string _password;
-        private string _website;
+        private string authsystem;
+        private string login;
+        private string password;
+        private string website;
         public string AuthSystem
         {
-            get { return _authsystem; }
+            get { return authsystem; }
             set
             {
-                if (_authsystem != value)
+                if (authsystem != value)
                 {
                     IsSystemValid(value);
-                    _authsystem = value;
+                    authsystem = value;
                 }
             }
         }
         public string Login
         {
-            get { return _login; }
+            get { return login; }
             set
             {
-                if (_login != value)
+                if (login != value)
                 {
                     IsLoginContainsAnything(value);
-                    _login = value;
+                    login = value;
                 }
             }
         }
         public string PasswordSystem
         {
-            get { return _password; }
+            get { return password; }
             set
             {
-                if (_password != value)
+                if (password != value)
                 {
                     IsPasswordContainsAnything(value);
-                    _password = value;
+                    password = value;
                 }
             }
         }
         public string Website
         {
-            get { return _website; }
+            get { return website; }
             set
             {
-                _website = value;
+                website = value;
             }
         }
     }

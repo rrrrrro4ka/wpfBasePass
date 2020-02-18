@@ -13,9 +13,14 @@ namespace UserDataStorage.Logic
 {
     public class XmlService
     {
-        public ObservableCollection<SystemInfo> userstoragelist = new ObservableCollection<SystemInfo>();
-        private XDocument xml_system_db;
-        private XDocument xml_password_db;
+        private ObservableCollection<SystemInfo> userstoragelist = new ObservableCollection<SystemInfo>();
+        private XDocument xmlSystemDb;
+        private XDocument xmlPasswordDb;
+        public ObservableCollection<SystemInfo>  UserStorageList
+        {
+            get { return userstoragelist; }
+        }
+        
         /// <summary>
         /// Конструктор, проверяем наличие файла. Если есть, то отображаем данные из него соответственно.
         /// </summary>
@@ -26,14 +31,15 @@ namespace UserDataStorage.Logic
             if (fileInf.Exists)
             {
                 XDocument xDoc = XDocument.Load(path);
-                xml_system_db = xDoc;
-                GenerateUserStorageToShow(xml_system_db);
+                xmlSystemDb = xDoc;
+                GenerateUserStorageToShow(xmlSystemDb);
             }
             else
             {
 
             }
         }
+
         /// <summary>
         /// Метод отображения данных при входе в личный кабинет
         /// </summary>
@@ -43,17 +49,14 @@ namespace UserDataStorage.Logic
             foreach (XElement systemElement in XmlData.Element("systems").Elements("system"))
             {
                 SystemInfo onesysteminfo = new SystemInfo();
-                XAttribute nameSystemAttribute = systemElement.Attribute("name");
-                XElement loginSystemElement = systemElement.Element("login");
-                XElement passwordSystemElement = systemElement.Element("password");
-                XElement websiteSystemElement = systemElement.Element("website");
-                onesysteminfo.AuthSystem = nameSystemAttribute.Value;
-                onesysteminfo.Login = loginSystemElement.Value;
-                onesysteminfo.PasswordSystem = passwordSystemElement.Value;
-                onesysteminfo.Website = websiteSystemElement.Value;
+                onesysteminfo.AuthSystem = systemElement.Attribute("name").Value;
+                onesysteminfo.Login = systemElement.Element("login").Value;
+                onesysteminfo.PasswordSystem = systemElement.Element("password").Value;
+                onesysteminfo.Website = systemElement.Element("website").Value;
                 userstoragelist.Add(onesysteminfo);
             }
         }
+
         /// <summary>
         /// Метод сохранения данных по системам в xml.
         /// </summary>
@@ -66,8 +69,8 @@ namespace UserDataStorage.Logic
             if (fileInf.Exists)
             {
                 bool changedobject = false;
-                XElement root = xml_system_db.Element("systems");
-                foreach (XElement xe in root.Elements("system").ToList())
+                XElement root = xmlSystemDb.Element("systems");
+                foreach (XElement xe in root.Elements("system"))
                 {
                     if (xe.Attribute("name").Value == usersystem.AuthSystem)
                     {
@@ -85,11 +88,11 @@ namespace UserDataStorage.Logic
                                 new XElement("login", usersystem.Login),
                                 new XElement("password", usersystem.PasswordSystem),
                                 new XElement("website", usersystem.Website)));
-                    xml_system_db.Save("UserSystems.xml");
+                    xmlSystemDb.Save("UserSystems.xml");
                 }
                 else
                 {
-                    xml_system_db.Save("UserSystems.xml");
+                    xmlSystemDb.Save("UserSystems.xml");
                 }
             }
             else
@@ -97,24 +100,20 @@ namespace UserDataStorage.Logic
                 foreach (SystemInfo sys in userAccountInformations)
                 {
                     XDocument xdoc = new XDocument();
-                    XElement one_system = new XElement("system");
-                    XAttribute one_systemAttribute = new XAttribute("name", sys.AuthSystem);
-                    XElement one_systemLogin = new XElement("login", sys.Login);
-                    XElement one_systemPassword = new XElement("password", sys.PasswordSystem);
-                    XElement one_systemsite = new XElement("website", sys.Website);
-                    one_system.Add(one_systemAttribute);
-                    one_system.Add(one_systemLogin);
-                    one_system.Add(one_systemPassword);
-                    one_system.Add(one_systemsite);
                     XElement systems = new XElement("systems");
-                    systems.Add(one_system);
+                    systems.Add(new XElement("system",
+                    new XAttribute("name", sys.AuthSystem),
+                    new XElement("login", sys.Login),
+                    new XElement("password", sys.PasswordSystem),
+                    new XElement("website", sys.Website)));
                     xdoc.Add(systems);
                     xdoc.Save("UserSystems.xml");
                 }
-                xml_system_db = XDocument.Load(path);
+                xmlSystemDb = XDocument.Load(path);
             }
 
         }
+
         /// <summary>
         /// Метод для удаления системы из xml.
         /// </summary>
@@ -125,17 +124,18 @@ namespace UserDataStorage.Logic
             FileInfo fileInf = new FileInfo(path);
             if (fileInf.Exists)
             {
-                XElement root = xml_system_db.Element("systems");
+                XElement root = xmlSystemDb.Element("systems");
                 foreach (XElement xe in root.Elements("system").ToList())
                 {
                     if (xe.Attribute("name").Value == usersystem.AuthSystem)
                     {
                         xe.Remove();
-                        xml_system_db.Save("UserSystems.xml");
+                        xmlSystemDb.Save("UserSystems.xml");
                     }
                 }
             }
         }
+
         /// <summary>
         /// Метод сохранения пароля в xml.
         /// </summary>
@@ -149,8 +149,9 @@ namespace UserDataStorage.Logic
                 new XElement("secret", password.AddSecretWord)));
             xDocPassword.Add(root);
             xDocPassword.Save("UserPassword.xml");
-            xml_password_db = xDocPassword;
+            xmlPasswordDb = xDocPassword;
         }
+
         /// <summary>
         /// Перегруженный метод заменяет пароль в xml.
         /// </summary>
@@ -164,8 +165,9 @@ namespace UserDataStorage.Logic
                 new XElement("secret", password.NewSecretWord)));
             xDocPassword.Add(root);
             xDocPassword.Save("UserPassword.xml");
-            xml_password_db = xDocPassword;
+            xmlPasswordDb = xDocPassword;
         }
+
         /// <summary>
         /// Удаление файла с паролем
         /// </summary>
@@ -178,6 +180,7 @@ namespace UserDataStorage.Logic
                 fileInf.Delete();
             }
         }
+
         /// <summary>
         /// Метод сравнивает ключевые слова чтобы сменить пароль
         /// </summary>
@@ -190,8 +193,8 @@ namespace UserDataStorage.Logic
             if (fileInf.Exists)
             {
                 XDocument Xpass = XDocument.Load(path);
-                xml_password_db = Xpass;
-                XElement root = xml_password_db.Element("password");
+                xmlPasswordDb = Xpass;
+                XElement root = xmlPasswordDb.Element("password");
                 foreach (XElement secret in root.Elements("pass").ToList())
                 {
                     if (secret.Element("secret").Value == oldsecretword)
@@ -210,6 +213,7 @@ namespace UserDataStorage.Logic
                 return false;
             }
         }
+
         /// <summary>
         /// Метод сравнивает пароли, в БД и что вводит пользователь
         /// </summary>
